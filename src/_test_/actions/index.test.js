@@ -35,6 +35,10 @@ describe('tap room actions', () => {
       id: 1
     });
   });
-
+  it('decreaseKeg should create DECREASE_KEG action', () => {
+    expect(actions.decreaseKeg()).toEqual({
+      type: c.DECREASE_KEG
+    });
+  });
 
 });
