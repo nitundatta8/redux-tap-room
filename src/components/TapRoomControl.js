@@ -10,7 +10,6 @@ class TapRoomControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formVisibleOnPage: false,
       selectKeg: null
     }
   }
@@ -18,15 +17,15 @@ class TapRoomControl extends React.Component {
   handleClick = () => {
     if (this.state.selectKeg !== null) {
       this.setState({
-        formVisibleOnPage: false,
         selectKeg: null
       })
     } else {
-      this.setState(prevState => ({
-        formVisibleOnPage: !prevState.formVisibleOnPage
-      }));
+      const { dispatch } = this.props;
+      const action = {
+        type: c.TOGGLE_FORM
+      }
+      dispatch(action);
     }
-
   };
 
   handleAddingNewKegToList = (newKeg) => {
@@ -43,10 +42,10 @@ class TapRoomControl extends React.Component {
       id: id
     }
     dispatch(action);
-
-    this.setState({
-      formVisibleOnPage: false
-    })
+    const action2 = {
+      type: c.TOGGLE_FORM
+    }
+    dispatch(action2);
   };
 
   handleChangingSelectedKeg = (id) => {
@@ -93,7 +92,7 @@ class TapRoomControl extends React.Component {
     if (this.state.selectKeg !== null) {
       currentVisibleState = <KegDetails keg={this.state.selectKeg} onKegDelete={this.handleDeletingKeg} />
       buttonText = 'Return To the KegList';
-    } else if (this.state.formVisibleOnPage) {
+    } else if (this.props.formVisibleOnPage) {
       currentVisibleState = <NewKegForm onAddKegCreation={this.handleAddingNewKegToList} />
       buttonText = 'Return To the KegList';
     } else {
@@ -107,17 +106,20 @@ class TapRoomControl extends React.Component {
       </React.Fragment>
     );
   }
+};
+
+
+const mapStateToProps = state => {
+  return {
+    masterKegList: state.masterKegList,
+    formVisibleOnPage: state.formVisibleOnPage
+  }
 }
 
-const mapStoreToProps = state => {
-  return {
-    masterKegList: state
-  }
-};
-
 TapRoomControl.propTypes = {
-  masterKegList: PropTypes.object
+  masterKegList: PropTypes.object,
+  formVisibleOnPage: PropTypes.bool
 };
 
-TapRoomControl = connect(mapStoreToProps)(TapRoomControl);
+TapRoomControl = connect(mapStateToProps)(TapRoomControl);
 export default TapRoomControl;
