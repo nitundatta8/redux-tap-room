@@ -6,7 +6,7 @@ _July 02, 2020_
 _This app allows a user to add kegs to the keg list and see the master list. A user can also "sell a pint" and reduce the quantity of a keg._
 
 ## Component Tree
-![Diagram](./public/tapRoom1.png)
+![Diagram](./public/tapRoom.png)
 
 ## Setup/Installation
 _Setup assumes use of Git version control_
