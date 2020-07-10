@@ -11,7 +11,6 @@ class TapRoomControl extends React.Component {
     super(props);
     this.state = {
       formVisibleOnPage: false,
-
       selectKeg: null
     }
   }
@@ -51,7 +50,6 @@ class TapRoomControl extends React.Component {
   };
 
   handleChangingSelectedKeg = (id) => {
-    //const currentKeg = this.props.masterKegList.filter(keg => keg.id === id)[0]
     const currentKeg = this.props.masterKegList[id];
     this.setState({
       selectKeg: currentKeg
