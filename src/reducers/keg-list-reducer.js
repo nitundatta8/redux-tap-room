@@ -26,6 +26,7 @@ export default (state = {}, action) => {
       const newKegState = { ...state };
       newKegState[id].quantity = newKegState[id].quantity - 1;
       return newKegState;
+
     default:
       return state;
   }

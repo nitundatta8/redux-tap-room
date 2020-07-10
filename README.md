@@ -1,6 +1,6 @@
 # Tap Room 
 #### By: Nitun Datta
-_July 02, 2020_
+_July 10, 2020_
 
 ## Description
 _This app allows a user to add kegs to the keg list and see the master list. A user can also "sell a pint" and reduce the quantity of a keg._
@@ -12,7 +12,7 @@ _This app allows a user to add kegs to the keg list and see the master list. A u
 _Setup assumes use of Git version control_
 
 In terminal, navigate to desktop or other directory and clone the repository by typing:
-  * git clone https://github.com/nitundatta8/InventoryControl.git
+  * git clone https://github.com/nitundatta8/redux-tap-room.git
 
 ## Available Scripts
 
