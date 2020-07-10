@@ -15,7 +15,7 @@ import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
   formVisibleOnPage: formVisibleReducer,
-  masterkegList: kegListReducer
+  masterKegList: kegListReducer
 });
 
 export default rootReducer;
