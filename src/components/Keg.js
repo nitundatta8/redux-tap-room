@@ -31,7 +31,7 @@ function Keg(props) {
     </div>
   );
 }
-Keg.prototype = {
+Keg.propTypes = {
   name: PropTypes.string,
   quantity: PropTypes.number,
   whenKegClick: PropTypes.func,
