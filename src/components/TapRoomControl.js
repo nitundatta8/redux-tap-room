@@ -56,22 +56,12 @@ class TapRoomControl extends React.Component {
   };
 
   handleSellingPint = (id) => {
-    //const kegObject = this.state.masterKegList.filter(keg => keg.id === id)[0]
-    const kegObject = this.state.masterKegList[id];
-    const newKeg = {
-      name: kegObject.name,
-      brand: kegObject.brand,
-      price: kegObject.price,
-      flavor: kegObject.flavor,
-      caffeine: kegObject.caffeine,
-      quantity: kegObject.quantity - 1,
-      id: kegObject.id
+    const { dispatch } = this.props;
+    const action = {
+      type: c.DECREASE_KEG,
+      id: id
     }
-    const updateKeg = {};
-    //const updateKeg = this.props.masterKegList.filter(keg => keg.id !== kegObject.id).concat(newKeg);
-    this.setState({
-      masterKegList: updateKeg
-    })
+    dispatch(action);
   };
 
   handleDeletingKeg = (id) => {
