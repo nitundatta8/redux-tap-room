@@ -23,8 +23,9 @@ export const addKeg = (keg) => {
   }
 }
 
-export const decreaseKeg = () => ({
-  type: c.DECREASE_KEG
+export const decreaseKeg = id => ({
+  type: c.DECREASE_KEG,
+  id
 });
 
 export const selectKegId = id => ({

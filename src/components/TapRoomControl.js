@@ -3,82 +3,54 @@ import NewKegForm from './NewKegForm';
 import KegList from './KegList'
 import KegDetails from './KegDetails'
 import { connect } from 'react-redux';
-import * as c from './../actions/ActionTypes';
 import PropTypes from 'prop-types';
+import * as a from './../actions';
 
 class TapRoomControl extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
   }
 
   handleClick = () => {
     const { dispatch } = this.props;
+    const id2 = "";
     if (this.props.selectKeg !== "") {
-      const action2 = {
-        type: c.SELECT_KEG,
-        id: ""
-      }
+      const action2 = a.selectKegId(id2);
       dispatch(action2);
     } else {
-      const { dispatch } = this.props;
-      const action = {
-        type: c.TOGGLE_FORM
-      }
+      const action = a.toggleForm();
       dispatch(action);
     }
   };
 
   handleAddingNewKegToList = (newKeg) => {
     const { dispatch } = this.props;
-    const { name, brand, price, flavor, caffeine, quantity, id } = newKeg;
-    const action = {
-      type: c.ADD_KEG,
-      name: name,
-      brand: brand,
-      price: price,
-      flavor: flavor,
-      caffeine: caffeine,
-      quantity: quantity,
-      id: id
-    }
+    const action = a.addKeg(newKeg);
     dispatch(action);
-    const action2 = {
-      type: c.TOGGLE_FORM
-    }
+    const action2 = a.toggleForm();
     dispatch(action2);
   };
+
   handleChangingSelectedKeg = (id) => {
     const { dispatch } = this.props;
-    const action = {
-      type: c.SELECT_KEG,
-      id: id
-    }
+    const action = a.selectKegId(id);
     dispatch(action);
   };
 
 
   handleSellingPint = (id) => {
     const { dispatch } = this.props;
-    const action = {
-      type: c.DECREASE_KEG,
-      id: id
-    }
+    const action = a.decreaseKeg(id);
     dispatch(action);
   };
 
   handleDeletingKeg = (id) => {
     const { dispatch } = this.props;
-    const action = {
-      type: c.DELETE_KEG,
-      id: id
-    }
+    const id2 = "";
+    const action = a.deleteKeg(id);
     dispatch(action);
-    dispatch(action);
-    const action2 = {
-      type: c.SELECT_KEG,
-      id: ""
-    }
+
+    const action2 = a.selectKegId(id2)
     dispatch(action2)
   }
 
