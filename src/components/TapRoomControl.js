@@ -9,16 +9,17 @@ import PropTypes from 'prop-types';
 class TapRoomControl extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selectKeg: null
-    }
+    this.state = {}
   }
 
   handleClick = () => {
-    if (this.state.selectKeg !== null) {
-      this.setState({
-        selectKeg: null
-      })
+    const { dispatch } = this.props;
+    if (this.props.selectKeg !== "") {
+      const action2 = {
+        type: c.SELECT_KEG,
+        id: ""
+      }
+      dispatch(action2);
     } else {
       const { dispatch } = this.props;
       const action = {
@@ -47,13 +48,15 @@ class TapRoomControl extends React.Component {
     }
     dispatch(action2);
   };
-
   handleChangingSelectedKeg = (id) => {
-    const currentKeg = this.props.masterKegList[id];
-    this.setState({
-      selectKeg: currentKeg
-    })
+    const { dispatch } = this.props;
+    const action = {
+      type: c.SELECT_KEG,
+      id: id
+    }
+    dispatch(action);
   };
+
 
   handleSellingPint = (id) => {
     const { dispatch } = this.props;
@@ -71,16 +74,21 @@ class TapRoomControl extends React.Component {
       id: id
     }
     dispatch(action);
-    this.setState({
-      selectKeg: null
-    })
+    dispatch(action);
+    const action2 = {
+      type: c.SELECT_KEG,
+      id: ""
+    }
+    dispatch(action2)
   }
 
   render() {
     let currentVisibleState = null;
     let buttonText = null;
-    if (this.state.selectKeg !== null) {
-      currentVisibleState = <KegDetails keg={this.state.selectKeg} onKegDelete={this.handleDeletingKeg} />
+    if (this.props.selectKeg !== "") {
+      currentVisibleState = <KegDetails
+        keg={this.props.masterKegList[this.props.selectKeg]}
+        onKegDelete={this.handleDeletingKeg} />
       buttonText = 'Return To the KegList';
     } else if (this.props.formVisibleOnPage) {
       currentVisibleState = <NewKegForm onAddKegCreation={this.handleAddingNewKegToList} />
@@ -102,13 +110,15 @@ class TapRoomControl extends React.Component {
 const mapStateToProps = state => {
   return {
     masterKegList: state.masterKegList,
-    formVisibleOnPage: state.formVisibleOnPage
+    formVisibleOnPage: state.formVisibleOnPage,
+    selectKeg: state.selectKeg,
   }
 }
 
 TapRoomControl.propTypes = {
   masterKegList: PropTypes.object,
-  formVisibleOnPage: PropTypes.bool
+  formVisibleOnPage: PropTypes.bool,
+  selectKeg: PropTypes.string
 };
 
 TapRoomControl = connect(mapStateToProps)(TapRoomControl);
