@@ -50,7 +50,7 @@ function NewKegForm(props) {
       flavor: event.target.flavor.value,
       caffeine: event.target.caffeine.value,
       quantity: event.target.quantity.value,
-      id: { v4 }
+      id: v4()
     })
 
   };
